@@ -110,8 +110,6 @@ echo ""
 echo "The following processes are currently running: "
 ps -ah | grep -v "ps -ah"
 echo ""
-battery
-echo ""
 echo "Current 'screen' status: "
 screen -ls
 echo -n "Login completed at : " ; date
