@@ -2,7 +2,7 @@
 #
 # r3v's .zshrc file
 #
-# Last Modification: 2014.11.17
+# Last Modification: 2014.11.04
 
 set TERM_PROGRAM="Apple_Terminal"
 
@@ -22,7 +22,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE="$HOME/.zhistory"
 
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:/Users/cls/bin"
 
 # loads the "programmable rename" command
 autoload -U zmv
@@ -46,7 +46,6 @@ alias emptytrash="rm -r ~/.Trash/*"                     # empty trash
 alias emptytrashn="rm -ir ~/.Trash/*"                   # empty trash (nice), verifying
 alias lsd='ls -ld *(-/DN)'
 alias today="date +\"%a %b %e\""
-alias cfw="osascript -e 'tell application \"Finder\" to close every window'"
 
 # Functions
 psg() { ps -axww | grep -i "$@" | grep -v grep }
@@ -63,13 +62,6 @@ updatezshrc(){											# grab latest .zshrc
 		mv $HOME/.zshrc $HOME/.zshrc.backup
 		cp $HOME/GitHub/r3v.zshrc/zshrc $HOME/.zshrc
 		source $HOME/.zshrc
-	fi
-}
-copyzshrctogithub(){
-	if [ -f $HOME/GitHub/r3v.zshrc/zshrc ]
-	then
-		mv $HOME/GitHub/r3v.zshrc/zshrc $HOME/GitHub/r3v.zshrc/zshrc.`date "+%Y.%m.%d-%H.%M"`.backup
-		cp $HOME/.zshrc $HOME/GitHub/r3v.zshrc/zshrc 
 	fi
 }
 battery() {												# what's the battery like?
