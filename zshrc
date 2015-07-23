@@ -1,0 +1,117 @@
+#!/bin/zsh
+#
+# r3v's .zshrc file
+#
+# Last Modification: 2015.07.23
+
+set TERM_PROGRAM="Apple_Terminal"
+
+setopt EXTENDED_GLOB
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_NO_STORE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
+setopt INC_APPEND_HISTORY
+setopt NUMERIC_GLOB_SORT
+setopt SHARE_HISTORY
+
+# Command History Stuff
+HISTSIZE=10000
+SAVEHIST=10000
+HISTFILE="$HOME/.zhistory"
+
+export PATH="$PATH:/Users/cls/bin"
+
+# loads the "programmable rename" command
+autoload -U zmv
+
+# allows use of csh-style setenv to properly set environment variables
+# no longer needed?
+setenv () { export $1=$2 }
+
+# Binds DEL to forward delete
+bindkey -s "^[[3~" "^D"
+
+# Prompt stuff  ( also see: http://zsh.sunsite.dk/Guide/zshguide02.html#l19 )
+prompt='
+[%n@%m] %~
+%Bzsh%#%b '
+
+# Aliases
+alias oa="open -a "                                     # Open Application named
+alias viewtrash="ls -lag ~/.Trash"                      # see contents of trash
+alias emptytrash="rm -r ~/.Trash/*"                     # empty trash
+alias emptytrashn="rm -ir ~/.Trash/*"                   # empty trash (nice), verifying
+alias lsd='ls -ld *(-/DN)'
+alias today="date +\"%a %b %e\""
+alias duh="du -hd 1 ."
+alias am="open -a Activity\ Monitor"
+
+# Functions
+psg() { ps -axww | grep -i "$@" | grep -v grep }
+psgc() { ps -axc | grep -i "$@" | grep -v grep }
+psgs() { ps -axcO %cpu,%mem | grep -i "$@" | grep -v grep }
+word() { grep "$@" /usr/share/dict/web2 }               # is it a word?
+trash() { mv "$@" ~/.Trash }                            # move item to trash
+here() { export THERE=$PWD; }							# bookmark location
+there() { cd $THERE } 									# return to bookmarked location
+mcd()  { mkdir "$@" ; cd "$@" }							# make a dir and go to it
+updatezshrc(){											# grab latest .zshrc
+	if [ -f $HOME/GitHub/r3v.zshrc/zshrc ]
+	then
+		mv $HOME/.zshrc $HOME/.zshrc.backup
+		cp $HOME/GitHub/r3v.zshrc/zshrc $HOME/.zshrc
+		source $HOME/.zshrc
+	fi
+}
+battery() {												# what's the battery like?
+	batterytable=( ${${$(pmset -g ps)[(w)7,8]}%(\%|);} )
+	echo "Battery: "$batterytable[1] "("$batterytable[2]")"
+}
+label(){
+  if [ $# -lt 2 ]; then
+    echo "USAGE: label [0-7] file1 [file2] ..."
+    echo "Sets the Finder label (color) for files"
+    echo "Default colors:"
+    echo " 0  No color"
+    echo " 1  Orange"
+    echo " 2  Red"
+    echo " 3  Yellow"
+    echo " 4  Blue"
+    echo " 5  Purple"
+    echo " 6  Green"
+    echo " 7  Gray"
+  else
+    osascript - "$@" << EOF
+    on run argv
+        set labelIndex to (item 1 of argv as number)
+        repeat with i from 2 to (count of argv)
+          tell application "Finder"
+              set theFile to POSIX file (item i of argv) as alias
+              set label index of theFile to labelIndex
+          end tell
+        end repeat
+    end run
+EOF
+  fi
+}
+
+# If there is a machine specific .zshrc then run it
+if [ -f $HOME/.zshrc-$(hostname -s) ]
+then
+    source $HOME/.zshrc-$(hostname -s)
+fi
+
+# Endgame.
+echo ""
+echo "Welcome to $HOST, $USER."
+echo ""
+echo "The following processes are currently running: "
+ps -ah | grep -v "ps -ah"
+echo ""
+echo "Current 'screen' status: "
+screen -ls
+echo -n "Login completed at : " ; date
