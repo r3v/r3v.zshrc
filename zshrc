@@ -2,7 +2,7 @@
 #
 # r3v's .zshrc file
 #
-# Last Modification: 2014.11.04
+# Last Modification: 2015.07.23
 
 set TERM_PROGRAM="Apple_Terminal"
 
@@ -37,7 +37,7 @@ bindkey -s "^[[3~" "^D"
 
 # Prompt stuff  ( also see: http://zsh.sunsite.dk/Guide/zshguide02.html#l19 )
 prompt='
-[%n@%m] %~ 
+[%n@%m] %~
 %Bzsh%#%b '
 
 # Aliases
@@ -47,6 +47,8 @@ alias emptytrash="rm -r ~/.Trash/*"                     # empty trash
 alias emptytrashn="rm -ir ~/.Trash/*"                   # empty trash (nice), verifying
 alias lsd='ls -ld *(-/DN)'
 alias today="date +\"%a %b %e\""
+alias duh="du -hd 1 ."
+alias am="open -a Activity\ Monitor"
 
 # Functions
 psg() { ps -axww | grep -i "$@" | grep -v grep }
@@ -67,7 +69,7 @@ updatezshrc(){											# grab latest .zshrc
 }
 battery() {												# what's the battery like?
 	batterytable=( ${${$(pmset -g ps)[(w)7,8]}%(\%|);} )
-	echo "Battery: "$batterytable[1] "("$batterytable[2]")" 
+	echo "Battery: "$batterytable[1] "("$batterytable[2]")"
 }
 label(){
   if [ $# -lt 2 ]; then
