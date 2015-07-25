@@ -2,7 +2,7 @@
 #
 # r3v's .zshrc file
 #
-# Last Modification: 2015.07.24
+# Last Modification: 2015.07.23
 
 set TERM_PROGRAM="Apple_Terminal"
 
@@ -61,7 +61,7 @@ trash() { mv "$@" ~/.Trash }                            # move item to trash
 here() { export THERE=$PWD; }							# bookmark location
 there() { cd $THERE } 									# return to bookmarked location
 mcd()  { mkdir "$@" ; cd "$@" }							# make a dir and go to it
-zshrcFROMgithub(){										# grab latest .zshrc
+updatezshrc(){											# grab latest .zshrc
 	if [ -f $HOME/GitHub/r3v.zshrc/zshrc ]
 	then
 		mv $HOME/.zshrc $HOME/.zshrc.backup
@@ -69,7 +69,7 @@ zshrcFROMgithub(){										# grab latest .zshrc
 		source $HOME/.zshrc
 	fi
 }
-zshrcTOgithub(){
+copyzshrctogithub(){
 	if [ -f $HOME/GitHub/r3v.zshrc/zshrc ]
 	then
 		mv $HOME/GitHub/r3v.zshrc/zshrc $HOME/GitHub/r3v.zshrc/zshrc.`date "+%Y.%m.%d-%H.%M"`.backup
