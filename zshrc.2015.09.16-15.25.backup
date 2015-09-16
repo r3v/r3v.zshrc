@@ -73,8 +73,8 @@ zshrcFROMgithub(){										# grab latest .zshrc
 zshrcTOgithub(){										# copy .zshrc to local git
 	if [ -f $HOME/GitHub/r3v.zshrc/zshrc ]
 	then
-		mv -v $HOME/GitHub/r3v.zshrc/zshrc $HOME/GitHub/r3v.zshrc/zshrc.`date "+%Y.%m.%d-%H.%M"`.backup
-		cp -v $HOME/.zshrc $HOME/GitHub/r3v.zshrc/zshrc 
+		mv $HOME/GitHub/r3v.zshrc/zshrc $HOME/GitHub/r3v.zshrc/zshrc.`date "+%Y.%m.%d-%H.%M"`.backup
+		cp $HOME/.zshrc $HOME/GitHub/r3v.zshrc/zshrc 
 	fi
 }
 battery() {												# what's the battery like?
