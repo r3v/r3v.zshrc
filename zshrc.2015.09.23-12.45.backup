@@ -2,7 +2,7 @@
 #
 # r3v's .zshrc file
 #
-# Last Modification: 2015.09.23
+# Last Modification: 2015.09.16
 
 set TERM_PROGRAM="Apple_Terminal"
 
@@ -50,7 +50,6 @@ alias today="date +\"%a %b %e\""
 alias duh="du -hd 1 ."
 alias am="open -a Activity\ Monitor"
 alias cfw="osascript -e 'tell application \"Finder\" to close every window'"
-alias refreshFinder="osascript -e 'tell application \"Finder\" to tell every window to update every item'"
 alias sortDownloads="~/bin/sortFilesInsideDir.pl ~/Downloads"
 
 # Functions
