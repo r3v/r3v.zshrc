@@ -2,7 +2,7 @@
 #
 # r3v's .zshrc file
 #
-# Last Modification: 2016.03.08
+# Last Modification: 2015.09.23
 
 set TERM_PROGRAM="Apple_Terminal"
 
@@ -109,9 +109,6 @@ label(){
 EOF
   fi
 }
-vol() { osascript -e "set Volume $@" }
-
-
 
 # If there is a machine specific .zshrc then run it
 if [ -f $HOME/.zshrc-$(hostname -s) ]
