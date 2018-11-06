@@ -16,6 +16,7 @@ setopt HIST_REDUCE_BLANKS
 setopt HIST_VERIFY
 setopt INC_APPEND_HISTORY
 setopt NUMERIC_GLOB_SORT
+setopt SHARE_HISTORY
 
 # Command History Stuff
 HISTSIZE=10000
@@ -62,8 +63,6 @@ here() { export THERE=$PWD; }							# bookmark location
 there() { cd $THERE } 									# return to bookmarked location
 mcd()  { mkdir "$@" ; cd "$@" }							# make a dir and go to it
 ql() { qlmanage -p "$@" >& /dev/null }					# quicklook file, ignore output
-calc() { bc -l <<< "$@" }								# quick way to do basic math via bc
-
 zshrcFROMgithub(){										# grab latest .zshrc
 	if [ -f $HOME/GitHub/r3v.zshrc/zshrc ]
 	then
