@@ -23,7 +23,6 @@ SAVEHIST=10000
 HISTFILE="$HOME/.zhistory"
 
 export PATH="$PATH:$HOME/bin"
-export EDITOR=nano
 
 # loads the "programmable rename" command
 autoload -U zmv
