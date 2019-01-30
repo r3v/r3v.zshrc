@@ -2,7 +2,7 @@
 #
 # r3v's .zshrc file
 #
-# Last Modification: 2016.03.08
+# Last Modification: 2019.01.30
 
 set TERM_PROGRAM="Apple_Terminal"
 
@@ -24,7 +24,7 @@ HISTFILE="$HOME/.zhistory"
 
 export PATH="$PATH:$HOME/bin"
 export EDITOR=nano
-
+	
 # loads the "programmable rename" command
 autoload -U zmv
 
@@ -127,6 +127,9 @@ echo "Welcome to $HOST, $USER."
 echo ""
 echo "The following processes are currently running: "
 ps -ah | grep -v "ps -ah"
+echo ""
+echo "Current 'uptime' stats: "
+uptime
 echo ""
 echo "Current 'screen' status: "
 screen -ls
