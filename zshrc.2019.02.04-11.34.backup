@@ -35,9 +35,9 @@ setenv () { export $1=$2 }
 # Binds DEL to forward delete
 bindkey -s "^[[3~" "^D"
 
-# Prompt stuff  # http://zsh.sourceforge.net/Doc/Release/Prompt-Expansion.html#SEC59
-prompt='                       
-[%F{cyan}%n@%m%f] %F{yellow}%~%f
+# Prompt stuff  ( also see: http://zsh.sunsite.dk/Guide/zshguide02.html#l19 )
+prompt='
+[%n@%m] %~ 
 %Bzsh%#%b '
 
 # Aliases
@@ -123,14 +123,14 @@ fi
 
 # Endgame.
 echo ""
-echo "\x1b[1mWelcome to $HOST, $USER.\x1b[0m"
+echo "Welcome to $HOST, $USER."
 echo ""
-echo "The following processes are currently running: \x1b[2m"
-ps cj
-echo "\x1b[0m"
+echo "The following processes are currently running: "
+ps -ah | grep -v "ps -ah"
+echo ""
 echo "Current 'uptime' stats: "
-echo "	`uptime`"
+uptime
 echo ""
 echo "Current 'screen' status: "
-echo "`screen -ls`"
+screen -ls
 echo -n "Login completed at : " ; date
