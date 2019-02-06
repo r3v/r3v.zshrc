@@ -2,7 +2,7 @@
 #
 # r3v's .zshrc file
 #
-# Last Modification: 2019.02.05
+# Last Modification: 2019.01.30
 
 set TERM_PROGRAM="Apple_Terminal"
 
@@ -27,9 +27,6 @@ export EDITOR=nano
 	
 # loads the "programmable rename" command
 autoload -U zmv
-
-# loads the Advanced Tab completion
-autoload -U compinit && compinit
 
 # allows use of csh-style setenv to properly set environment variables
 # no longer needed?
